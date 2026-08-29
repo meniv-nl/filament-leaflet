@@ -19,7 +19,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check out fork
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Sync upstream tags
         run: |
