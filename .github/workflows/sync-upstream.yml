@@ -13,7 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Sync fork with upstream
+      - name: Sync main branch with upstream
         run: gh repo sync "${{ github.repository }}" --branch main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check out fork
+        uses: actions/checkout@v4
+
+      - name: Sync upstream tags
+        run: |
+          git remote add upstream https://github.com/eduardoribeirodev/filament-leaflet.git
+          git fetch upstream --tags
+          git push origin --tags
